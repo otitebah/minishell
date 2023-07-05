@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otitebah <otitebah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 16:13:07 by machaiba          #+#    #+#             */
-/*   Updated: 2023/06/23 05:25:17 by otitebah         ###   ########.fr       */
+/*   Created: 2023/05/06 11:26:25 by machaiba          #+#    #+#             */
+/*   Updated: 2023/06/10 14:12:44 by otitebah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "parsing.h"
 
-# include "parsing/parsing.h"
-# include "execution/execution.h"
-# include <sys/types.h>
-# include <sys/wait.h>
-
-typedef struct s_global
+void	ft_lstadd_back2(t_args **lst, t_args *new)
 {
-	char	*line;
-	t_token	*lst;
-	t_args	*args;
-	t_args	*tmp;
-	int		x;
-	t_env	*env_parse;
-	char	**env_copy;
-	int		stdin_main;
-}	t_global;
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		ft_lstlast2(*lst)->next = new;
+	}
+}
 
-#endif
+void	ft_lstadd_back(t_token **lst, t_token *new)
+{
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
+		ft_lstlast(*lst)->next = new;
+}

@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otitebah <otitebah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 16:13:07 by machaiba          #+#    #+#             */
-/*   Updated: 2023/06/23 05:25:17 by otitebah         ###   ########.fr       */
+/*   Created: 2023/05/06 11:37:23 by machaiba          #+#    #+#             */
+/*   Updated: 2023/06/15 10:35:43 by otitebah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "parsing.h"
 
-# include "parsing/parsing.h"
-# include "execution/execution.h"
-# include <sys/types.h>
-# include <sys/wait.h>
-
-typedef struct s_global
+t_args	*ft_lstnew2(void)
 {
-	char	*line;
-	t_token	*lst;
-	t_args	*args;
-	t_args	*tmp;
-	int		x;
-	t_env	*env_parse;
-	char	**env_copy;
-	int		stdin_main;
-}	t_global;
+	t_args	*head;
 
-#endif
+	head = NULL;
+	head = malloc(sizeof(t_args));
+	head->next = NULL;
+	return (head);
+}
+
+t_token	*ft_lstnew(char *data)
+{
+	t_token	*head;
+
+	head = NULL;
+	head = malloc(sizeof(t_token));
+	head->data = ft_strdup(data);
+	head->next = NULL;
+	return (head);
+}
